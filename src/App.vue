@@ -1,27 +1,43 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <h1>Ant Design Vue 3.x Error Capture Issue</h1>
+  <div>
+    <h1>Reproduce Issue:</h1>
+    <h3>1. select an option [trigger 'onSelect']</h3>
+    <h3>2. then you can find 'Uncaught (in promise) test error' in console</h3>
+    <ASelect :options="options" @select="onTest" />
+    <hr />
+    <h3>Same callback function for button, it fires 'onErrorCaptured' as expected</h3>
+    <AButton @click="onTest">Test Button</AButton>
+    <h1>Expect:</h1>
+    <h3>'onSelect' of Select should fire onErrorCaptured</h3>
+
+    <h1>Versions</h1>
+    <pre>
+      antdv: 3.0.0-beta.7
+      vue: 3.2.28
+    </pre>
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+<script lang="ts" setup>
+import { onErrorCaptured } from "vue";
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    HelloWorld
+const options = [
+  {
+    label: 'AAA',
+    value: 'AAA',
+  },
+  {
+    label: 'BBB',
+    value: 'BBB',
   }
-});
-</script>
+];
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+function onTest() {
+  return Promise.reject('test error');
 }
-</style>
+
+onErrorCaptured((err) => {
+  console.log('onErrorCaptured', err);
+})
+</script>
