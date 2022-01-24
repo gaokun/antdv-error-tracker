@@ -4,10 +4,10 @@
     <h1>Reproduce Issue:</h1>
     <h3>1. select an option [trigger 'onSelect']</h3>
     <h3>2. then you can find 'Uncaught (in promise) test error' in console</h3>
-    <ASelect :options="options" @select="onTest" style="width: 100px" />
+    <ASelect :options="options" @select="onTest('select')" style="width: 100px" />
     <hr />
     <h3>Same callback function for button, it fires 'onErrorCaptured' as expected</h3>
-    <AButton @click="onTest">Test Button</AButton>
+    <AButton @click="onTest('btn')">Test Button</AButton>
     <h1>Expect:</h1>
     <h3>'onSelect' of Select should fire onErrorCaptured</h3>
 
@@ -34,8 +34,8 @@ const options = [
   }
 ];
 
-function onTest() {
-  return Promise.reject('test error');
+function onTest(label: string) {
+  return Promise.reject('test error: ' + label);
 }
 
 onErrorCaptured((err) => {
