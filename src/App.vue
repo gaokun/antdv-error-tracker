@@ -13,7 +13,7 @@
 
     <h1>Versions</h1>
     <pre>
-      antdv: 3.0.0-beta.7
+      antdv: 3.0.0-beta.8
       vue: 3.2.28
     </pre>
   </div>
