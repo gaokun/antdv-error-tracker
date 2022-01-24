@@ -1,5 +1,7 @@
 # antdv-error-tracker
 
+Ant Design Vue 3.x Error Capture Issue
+
 ## Project setup
 ```
 yarn install
