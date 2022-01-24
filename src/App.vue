@@ -4,7 +4,7 @@
     <h1>Reproduce Issue:</h1>
     <h3>1. select an option [trigger 'onSelect']</h3>
     <h3>2. then you can find 'Uncaught (in promise) test error' in console</h3>
-    <ASelect :options="options" @select="onTest" />
+    <ASelect :options="options" @select="onTest" style="width: 100px" />
     <hr />
     <h3>Same callback function for button, it fires 'onErrorCaptured' as expected</h3>
     <AButton @click="onTest">Test Button</AButton>
@@ -21,6 +21,7 @@
 
 <script lang="ts" setup>
 import { onErrorCaptured } from "vue";
+import { Select as ASelect, Button as AButton } from 'ant-design-vue/es';
 
 const options = [
   {
