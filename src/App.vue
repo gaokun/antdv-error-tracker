@@ -10,6 +10,9 @@
     <AButton @click="onTest('btn')">Test Button</AButton>
     <h1>Expect:</h1>
     <h3>'onSelect' of Select should fire onErrorCaptured</h3>
+    <hr />
+    <h1>Custom Event:</h1>
+    <CustomComp @custom-event="onTest('custom')" />
 
     <h1>Versions</h1>
     <pre>
@@ -22,6 +25,7 @@
 <script lang="ts" setup>
 import { onErrorCaptured } from "vue";
 import { Select as ASelect, Button as AButton } from 'ant-design-vue/es';
+import CustomComp from './CustomComp.vue';
 
 const options = [
   {
